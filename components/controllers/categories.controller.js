@@ -6,9 +6,9 @@ module.exports.categoryController={
          const data = await Category.create({
             category: req.body.category
          })
-         res.json(data)
+         return res.json(data)
         }catch(err) {
-            res.json(err.message)
+          return  res.json({error: err.message})
         }
     },
     getCat: async (req, res) =>{
@@ -16,7 +16,7 @@ module.exports.categoryController={
             const data = await Category.find()
             return res.json(data)
         }catch(err){
-            res.json(err.message)
+            res.json({error: err.message})
         }
     }
    

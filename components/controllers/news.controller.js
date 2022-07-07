@@ -29,4 +29,12 @@ module.exports.newsController = {
       return res.status(401).json(`Ошибка: ${err.message}`);
     }
   },
+  delNews: async (req, res) =>{
+    try{
+      const data = await News.findByIdAndDelete(req.params.id)
+      return res.json('Новость удалена')
+    }catch (err) {
+      return res.status(401).json(`Ошибка: ${err.message}`);
+    }
+  }
 };

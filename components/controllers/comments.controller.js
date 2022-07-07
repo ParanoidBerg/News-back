@@ -6,6 +6,7 @@ module.exports.commentsController = {
       const data = await Comments.create({
         user: req.user.id,
         commentText: req.body.commentText,
+        newsId: req.body.newsId
       });
       res.json(data);
     } catch (err) {
