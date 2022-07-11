@@ -16,7 +16,7 @@ module.exports.categoryController={
             const data = await Category.find()
             return res.json(data)
         }catch(err){
-            res.json({error: err.message})
+            return res.json({error: err.message})
         }
     }
    
