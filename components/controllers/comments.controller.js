@@ -4,7 +4,7 @@ module.exports.commentsController = {
   postComment: async (req, res) => {
     try {
       const data = await Comments.create({
-        user: req.user.id,
+        user: req.body.id,
         commentText: req.body.commentText,
         newsId: req.body.newsId
       });

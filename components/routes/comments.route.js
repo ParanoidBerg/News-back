@@ -6,6 +6,6 @@ const router = Router()
 
 router.post('/comments', authMiddlewares, commentsController.postComment),
 router.delete('/comments/:id', authMiddlewares, commentsController.delComments)
-router.get('comments', commentsController.getCommentsByNews)
+router.get('/comments/:id', commentsController.getCommentsByNews)
 
 module.exports = router
