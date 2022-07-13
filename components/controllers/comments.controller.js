@@ -4,7 +4,7 @@ module.exports.commentsController = {
   postComment: async (req, res) => {
     try {
       const data = await Comments.create({
-        user: req.body.id,
+        user: req.user.id,
         commentText: req.body.commentText,
         newsId: req.body.newsId
       });
@@ -16,6 +16,14 @@ module.exports.commentsController = {
   getCommentsByNews: async (req, res) => {
     try {
       const data = await Comments.find({ newsId: req.params.id });
+      return res.json(data);
+    } catch (err) {
+      res.json({ error: err.message });
+    }
+  },
+  getComments: async (req, res) => {
+    try {
+      const data = await Comments.find();
       return res.json(data);
     } catch (err) {
       res.json({ error: err.message });
