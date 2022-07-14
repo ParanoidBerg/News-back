@@ -45,7 +45,7 @@ module.exports.userController = {
       const token = await jwt.sign(payload, process.env.KEY, {
         expiresIn: "24h",
       });
-      res.json({ token, name: payload.login });
+      res.json({ token, name: payload.login, user: payload.id });
     } catch (err) {
       res.json(err);
     }
