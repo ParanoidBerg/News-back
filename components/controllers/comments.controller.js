@@ -32,7 +32,7 @@ module.exports.commentsController = {
   delComments: async (req, res) =>{
     try{
         const comment = await Comments.findById(req.params.id)
-        if(comment.user.toString() === req.user.id) {
+        if(comment.user.toString() === req.user.id || req.user.admin === 'admin') {
             await comment.remove()
             return res.json('Комментарий удален')
         }

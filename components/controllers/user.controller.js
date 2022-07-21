@@ -21,6 +21,7 @@ module.exports.userController = {
       const data = await User.create({
         login: req.body.login,
         password: hash,
+        admin: req.body.admin
       });
       res.json(data);
     } catch (err) {
@@ -41,13 +42,23 @@ module.exports.userController = {
       const payload = {
         id: candidate._id,
         login: candidate.login,
+        admin: candidate.admin
+
       };
       const token = await jwt.sign(payload, process.env.KEY, {
         expiresIn: "24h",
       });
-      res.json({ token, name: payload.login, user: payload.id });
+      res.json({ token, name: payload.login, user: payload.id, admin: payload.admin });
     } catch (err) {
       res.json(err);
     }
   },
+  delUser: async (req, res) => {
+    try {
+      await User.findByIdAndDelete(req.params.id)
+      res.json(req.params.id)
+    }catch (err) {
+      res.json(err);
+    }
+  }
 };

@@ -6,6 +6,10 @@ const userSchema = mongoose.Schema({
     unique: true,
   },
   password: String,
+  admin: {
+    type: String,
+    default: "user"
+  }
 });
 
 const User = mongoose.model("User", userSchema);
